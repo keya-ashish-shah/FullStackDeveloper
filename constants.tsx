@@ -12,10 +12,12 @@ export const SKILLS: Skill[] = [
   // { name: 'Django', icon: 'https://img.icons8.com/external-tal-revivo-color-tal-revivo/48/external-django-logo-color-tal-revivo.png' },
   { name: 'MySQL', icon: 'https://img.icons8.com/color/48/mysql-logo.png' },
   { name: 'MongoDB', icon: 'https://img.icons8.com/color/48/mongodb.png' },
+  { name: 'Postgres', icon: 'https://img.icons8.com/color/48/postgreesql.png' },
   { name: 'Express.js', icon: 'https://img.icons8.com/office40/1200/express-js.jpg' },
   { name: 'React', icon: 'https://img.icons8.com/color/48/react-native.png' },
   { name: 'Node.js', icon: 'https://img.icons8.com/color/48/nodejs.png' },
-  { name: 'AWS', icon: 'https://img.icons8.com/color/48/aws.png' },
+  { name: 'AWS', icon: 'https://img.icons8.com/color/48/amazon-web-services.png' },
+  
 ];
 
 export const EDUCATION: Education[] = [
