@@ -15,6 +15,7 @@ export const SKILLS: Skill[] = [
   { name: 'Express.js', icon: 'https://img.icons8.com/office40/1200/express-js.jpg' },
   { name: 'React', icon: 'https://img.icons8.com/color/48/react-native.png' },
   { name: 'Node.js', icon: 'https://img.icons8.com/color/48/nodejs.png' },
+  { name: 'AWS', icon: 'https://img.icons8.com/color/48/aws.png' },
 ];
 
 export const EDUCATION: Education[] = [
@@ -75,9 +76,9 @@ export const PROJECTS: Project[] = [
 
 export const CERTIFICATIONS: Certification[] = [
   {
-    title: 'Create a Website Using WordPress',
-    issuerLogo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzAxIzs2yRTPxONA1yBwMZdhkNwlqmIpxFug&s',
-    link: 'https://www.coursera.org/account/accomplishments/certificate/M7TWC4DEQ4GT'
+    title: 'certified Cloud Practioner',
+    issuerLogo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCLpnKx5WgsOa4w5Ofo17bmKPhEFbMk9cJig&s',
+    link: 'https://www.udemy.com/certificate/UC-a45ddb07-3904-4153-b4a7-d31cbdf11c0f/'
   },
   {
     title: 'Full Stack with MERN & Gen AI',
