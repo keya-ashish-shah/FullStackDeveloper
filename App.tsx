@@ -760,7 +760,7 @@ const App: React.FC = () => {
                 <h3 className="text-4xl font-display font-black text-white leading-tight">Professional <br /><span className="text-violet-400">Snapshot.</span></h3>
                 <p className="text-slate-400 font-medium">Download my detailed CV to learn more about my technical background, projects, and work philosophy.</p>
                 <a
-                  href="\public\Keya Shah (2).pdf"
+                  href="\public\Keya Shah.pdf"
                   className="inline-flex items-center justify-center gap-3 px-8 py-5 bg-white text-slate-950 font-black rounded-2xl hover:bg-slate-200 transition-all active:scale-95 shadow-xl"
                 >
                   Download PDF <Download size={20} />
@@ -831,7 +831,7 @@ const App: React.FC = () => {
 
                 {/* ✅ Correct download link */}
                 <a
-                  href="/Keya Shah (2).pdf"
+                  href="/Keya Shah.pdf"
                   download="Keya_Shah_Resume.pdf"
                   className="inline-flex items-center justify-center gap-3 px-8 py-5 bg-white text-slate-950 font-black rounded-2xl hover:bg-slate-200 transition-all active:scale-95 shadow-xl"
                 >
@@ -842,7 +842,7 @@ const App: React.FC = () => {
               {/* ✅ Right side PDF preview */}
               <div className="md:w-2/3 p-4 bg-slate-800/20 flex items-center justify-center min-h-[400px]">
                 <iframe
-                  src="/Keya Shah (2).pdf"
+                  src="/Keya Shah.pdf"
                   title="Resume Preview"
                   className="w-full h-[600px] rounded-2xl border border-slate-700 shadow-inner"
                 />
