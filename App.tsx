@@ -434,7 +434,7 @@ const App: React.FC = () => {
         {/* Resume Download Section */}
         <section className="relative text-center bg-slate-900/40 glass border border-slate-800 rounded-[3rem] p-16 space-y-8 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-violet-600/5 to-pink-600/5 -z-10" />
-          <SectionHeading badge="Opportunity">Download Professional Resume</SectionHeading>
+          <SectionHeading badge="Opportunity">Download Resume</SectionHeading>
           <p className="text-slate-400 text-lg font-medium max-w-2xl mx-auto">
             Looking for a skilled developer to join your team? Grab a copy of my resume to see my full technical stack and professional background.
           </p>
