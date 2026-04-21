@@ -79,7 +79,7 @@ export const PROJECTS: Project[] = [
 export const CERTIFICATIONS: Certification[] = [
   {
     title: 'certified Cloud Practioner',
-    issuerLogo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCLpnKx5WgsOa4w5Ofo17bmKPhEFbMk9cJig&s',
+    issuerLogo: 'https://img.icons8.com/color/48/amazon-web-services.png',
     link: 'https://www.udemy.com/certificate/UC-a45ddb07-3904-4153-b4a7-d31cbdf11c0f/'
   },
   {
