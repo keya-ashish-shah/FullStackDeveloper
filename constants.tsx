@@ -1,5 +1,5 @@
 
-import { Project, Certification, Skill, Education } from './types';
+import { Project, Certification, Skill, Education, Experience } from './types';
 
 export const SKILLS: Skill[] = [
   { name: 'HTML5', icon: 'https://img.icons8.com/color/48/html-5--v1.png' },
@@ -16,7 +16,18 @@ export const SKILLS: Skill[] = [
   { name: 'React', icon: 'https://img.icons8.com/color/48/react-native.png' },
   { name: 'Node.js', icon: 'https://img.icons8.com/color/48/nodejs.png' },
 ];
-
+export const EXPERIENCE: Experience[] = [
+  {
+    company: "Eternal Web Pvt. Ltd.",
+    role: "MERN Stack Developer Intern",
+    period: "Jan 2026 – May 2026",
+    type: "On-site",
+    logo: "/eternal.png",
+    tech: ["React.js", "FastAPI", "PostgreSQL", "AWS"],
+    description:
+      "Contributed to the development of a production-grade Tender Management System by building responsive React.js interfaces, scalable REST APIs with FastAPI, PostgreSQL integrations, and supporting AWS deployment workflows.",
+  },
+];
 export const EDUCATION: Education[] = [
   {
     school: 'K. S. School of Business Management & IT',

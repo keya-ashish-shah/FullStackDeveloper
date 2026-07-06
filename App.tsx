@@ -1,5 +1,5 @@
-
 import React, { useState, useEffect, useRef } from 'react';
+
 import {
   motion,
   useScroll,
@@ -27,9 +27,12 @@ import {
   Sparkles,
   Layers,
   Zap,
-  Layout
+  Layout,
+  Briefcase,
+  MapPin,
+  CalendarDays
 } from 'lucide-react';
-import { SKILLS, EDUCATION, PROJECTS, CERTIFICATIONS } from './constants';
+import { SKILLS, EDUCATION, PROJECTS, EXPERIENCE, CERTIFICATIONS } from './constants';
 
 const ProjectCard: React.FC<{ project: any, index: number }> = ({ project, index }) => {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -136,6 +139,68 @@ const SectionHeading: React.FC<{ children: React.ReactNode, badge?: string }> = 
   </div>
 );
 
+const ExperienceCard: React.FC<{ exp: any, index: number }> = ({ exp, index }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ delay: index * 0.1, duration: 0.8, ease: "easeOut" }}
+    className="group relative bg-slate-900/40 glass border border-slate-800 rounded-[2.5rem] p-8 md:p-10 hover:border-violet-500/40 transition-colors duration-500"
+  >
+    <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2.5rem]" />
+
+    <div className="relative z-10 flex flex-col md:flex-row md:items-start gap-8">
+      <div className="shrink-0 w-16 h-16 rounded-2xl bg-white/5 border border-slate-800 flex items-center justify-center overflow-hidden">
+        {exp.logo ? (
+          <img
+            src={exp.logo}
+            alt={exp.company}
+            className="w-12 h-12 object-contain"
+            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+          />
+        ) : (
+          <Briefcase size={28} className="text-violet-400" />
+        )}
+      </div>
+
+      <div className="flex-1 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <div>
+            <h4 className="text-2xl font-display font-bold text-white group-hover:text-violet-400 transition-colors">
+              {exp.role}
+            </h4>
+            <p className="text-slate-300 font-semibold">{exp.company}</p>
+          </div>
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs font-black uppercase tracking-widest w-max">
+            <CalendarDays size={12} /> {exp.period}
+          </span>
+        </div>
+
+        {exp.type && (
+          <div className="flex items-center gap-2 text-slate-500 text-xs font-bold uppercase tracking-widest">
+            <MapPin size={14} /> {exp.type}
+          </div>
+        )}
+
+        <p className="text-slate-400 leading-relaxed">{exp.description}</p>
+
+        {exp.tech && exp.tech.length > 0 && (
+          <div className="flex flex-wrap gap-2 pt-2">
+            {exp.tech.map((t: string) => (
+              <span
+                key={t}
+                className="px-3 py-1.5 rounded-full bg-slate-800/60 border border-slate-700 text-slate-300 text-xs font-bold"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  </motion.div>
+);
+
 const App: React.FC = () => {
   const [showResume, setShowResume] = useState(false);
   const [activeNav, setActiveNav] = useState('home');
@@ -144,7 +209,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'skills', 'projects', 'certifications', 'contact'];
+      const sections = ['home', 'skills', 'experience', 'projects', 'certifications', 'contact'];
       const scrollPos = window.scrollY + 100;
 
       for (const section of sections) {
@@ -191,6 +256,7 @@ const App: React.FC = () => {
             {[
               { id: 'about', label: 'About' },
               { id: 'skills', label: 'Skills' },
+              { id: 'experience', label: 'Experience' },
               { id: 'projects', label: 'Work' },
               { id: 'certifications', label: 'Certifications' },
               { id: 'contact', label: 'Connect' }
@@ -349,6 +415,17 @@ const App: React.FC = () => {
                   {skill.name}
                 </span>
               </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Experience Section */}
+        <section id="experience" className="relative">
+          <SectionHeading badge="Career">Work Experience</SectionHeading>
+
+          <div className="space-y-8">
+            {EXPERIENCE.map((exp, idx) => (
+              <ExperienceCard key={exp.company + exp.role} exp={exp} index={idx} />
             ))}
           </div>
         </section>
@@ -523,47 +600,6 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          {/* <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            className="p-10 bg-slate-900/40 glass border border-slate-800 rounded-[3rem] shadow-2xl"
-          > */}
-          {/* <form className="space-y-8" >onSubmit={(e) => e.preventDefault()}
-               <div className="space-y-6">
-                  <div className="relative">
-                    <input type="text" id="name" className="peer w-full bg-slate-950/50 border-0 border-b-2 border-slate-800 px-0 py-3 text-white focus:border-violet-500 focus:ring-0 transition-all outline-none placeholder-transparent" placeholder="Name" required />
-                    <label htmlFor="name" className="absolute left-0 -top-3.5 text-slate-500 text-sm font-bold uppercase tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-600 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-violet-500 peer-focus:text-sm">Your Name</label>
-                  </div>
-                  <div className="relative">
-                    <input type="email" id="email" className="peer w-full bg-slate-950/50 border-0 border-b-2 border-slate-800 px-0 py-3 text-white focus:border-violet-500 focus:ring-0 transition-all outline-none placeholder-transparent" placeholder="Email" required />
-                    <label htmlFor="email" className="absolute left-0 -top-3.5 text-slate-500 text-sm font-bold uppercase tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-600 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-violet-500 peer-focus:text-sm">Email Address</label>
-                  </div>
-                  <div className="relative">
-                    <textarea id="message" rows={3} className="peer w-full bg-slate-950/50 border-0 border-b-2 border-slate-800 px-0 py-3 text-white focus:border-violet-500 focus:ring-0 transition-all outline-none placeholder-transparent resize-none" placeholder="Message" required />
-                    <label htmlFor="message" className="absolute left-0 -top-3.5 text-slate-500 text-sm font-bold uppercase tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-600 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-violet-500 peer-focus:text-sm">Message</label>
-                  </div>
-               </div>
-
-               {/* <button type="submit" className="w-full py-5 bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-black rounded-2xl flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-violet-500/20">
-                 Send Direct Message <Send size={20} />
-               </button> 
-               <a href="mailto:someone@example.com" className="w-full py-5 bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-black rounded-2xl flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-violet-500/20">Send Email</a>
-
-            </form> */}
-
-
-
-
-
-
-          {/* </motion.div> */}
-
-
-
-
-
-
-
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -644,66 +680,7 @@ const App: React.FC = () => {
               </button>
             </form>
           </motion.div>
-
-
-
-
-
-
-
-
         </section>
-
-        
-        {/* <section id="about" className="relative py-32">
-          <SectionHeading badge="Who I Am">About Me</SectionHeading>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="space-y-6 text-slate-400 text-lg leading-relaxed"
-            >
-              <p>
-                Hi, I’m <span className="text-white font-bold">Keya Shah</span>, a
-                passionate <span className="text-violet-400 font-semibold">Full Stack Developer</span>
-                specializing in modern web applications built with the MERN stack.
-                I love combining clean code, responsive UI, and thoughtful design to
-                craft seamless digital experiences.
-              </p>
-
-              <p>
-                I started my journey learning HTML, CSS, and JavaScript, and quickly
-                found joy in solving real-world problems using React and Node.js.
-                Currently, I’m interning as a MERN developer, building full-featured
-                apps that integrate design and functionality.
-              </p>
-
-              <p>
-                My focus now is on expanding my expertise in frontend architecture,
-                exploring performance optimization, and preparing for a full-time
-                React role in the coming months.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="relative flex justify-center"
-            >
-              <div className="relative w-72 h-72 bg-gradient-to-tr from-violet-600 to-pink-600 rounded-[3rem] p-2">
-                <div className="absolute inset-0 blur-[100px] bg-violet-500/20 rounded-[3rem]" />
-                <img
-                  src="/profile-pic.jpg"
-                  alt="Keya Shah"
-                  className="relative w-full h-full object-cover rounded-[2.5rem] border border-slate-800 shadow-2xl"
-                />
-              </div>
-            </motion.div>
-          </div>
-        </section> */}
       </main>
 
       {/* Footer */}
@@ -734,62 +711,6 @@ const App: React.FC = () => {
       </footer>
 
       {/* Resume Modal */}
-      {/* <AnimatePresence>
-        {showResume && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center px-4 md:px-0"
-          >
-            <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-md" onClick={() => setShowResume(false)} />
-            <motion.div
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              className="relative w-full max-w-4xl bg-slate-900 border border-slate-800 rounded-[3rem] overflow-hidden flex flex-col md:flex-row shadow-2xl"
-            >
-              <button
-                onClick={() => setShowResume(false)}
-                className="absolute top-6 right-6 w-10 h-10 glass border border-slate-700 rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors z-20"
-              >
-                <X size={20} />
-              </button>
-
-              <div className="md:w-1/3 bg-slate-950 p-12 space-y-8 flex flex-col justify-center">
-                <h3 className="text-4xl font-display font-black text-white leading-tight">Professional <br /><span className="text-violet-400">Snapshot.</span></h3>
-                <p className="text-slate-400 font-medium">Download my detailed CV to learn more about my technical background, projects, and work philosophy.</p>
-                <a
-                  href="\public\Keya Shah (2).pdf"
-                  className="inline-flex items-center justify-center gap-3 px-8 py-5 bg-white text-slate-950 font-black rounded-2xl hover:bg-slate-200 transition-all active:scale-95 shadow-xl"
-                >
-                  Download PDF <Download size={20} />
-                </a>
-              </div>
-
-              <div className="md:w-2/3 p-4 bg-slate-800/20 flex items-center justify-center min-h-[400px]">
-                <div className="w-full h-full max-h-[600px] bg-slate-900 rounded-2xl border border-slate-700 flex flex-col items-center justify-center text-slate-500 gap-4">
-                  <FileText size={48} className="text-slate-700" />
-                  <p className="text-sm font-bold uppercase tracking-widest">Interactive Preview Loading...</p>
-                  <div className="w-48 h-1.5 bg-slate-800 rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: '100%' }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                      className="h-full bg-violet-500"
-                    />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence> */}
-
-
-
-
-
       <AnimatePresence>
         {showResume && (
           <motion.div
@@ -829,7 +750,6 @@ const App: React.FC = () => {
                   View or download my resume to learn more about my technical background, projects, and skills.
                 </p>
 
-                {/* ✅ Correct download link */}
                 <a
                   href="/Keya Shah (2).pdf"
                   download="Keya_Shah_Resume.pdf"
@@ -839,7 +759,7 @@ const App: React.FC = () => {
                 </a>
               </div>
 
-              {/* ✅ Right side PDF preview */}
+              {/* Right side PDF preview */}
               <div className="md:w-2/3 p-4 bg-slate-800/20 flex items-center justify-center min-h-[400px]">
                 <iframe
                   src="/Keya Shah (2).pdf"
@@ -851,15 +771,6 @@ const App: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
-
-
-
-
-
-
-
-
     </div>
   );
 }
