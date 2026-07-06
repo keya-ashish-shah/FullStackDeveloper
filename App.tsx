@@ -751,8 +751,8 @@ const App: React.FC = () => {
                 </p>
 
                 <a
-                  href="/Keya Shah (2).pdf"
-                  download="Keya_Shah_Resume.pdf"
+                  href="/Keya Shah.pdf"
+                  download="Keya Shah.pdf"
                   className="inline-flex items-center justify-center gap-3 px-8 py-5 bg-white text-slate-950 font-black rounded-2xl hover:bg-slate-200 transition-all active:scale-95 shadow-xl"
                 >
                   Download PDF <Download size={20} />
